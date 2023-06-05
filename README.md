@@ -2,65 +2,54 @@
 
 This is the repo that contains the source files for the [Nightscout Docs](https://nightscout.github.io/) site.
 
+Documentation was migrated from MkDocs to [Sphinx](https://www.sphinx-doc.org/en/master/index.html) with [MyST](https://myst-parser.readthedocs.io/en/latest/index.html).
+
+[Markdown](https://daringfireball.net/projects/markdown/basics) is a simple text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format.
+
 ## Contributing
 
 To suggest changes, fork this repository, edit the files, and submit your changes as a pull request.
 
+If you don't want to install the full documentation suite, you can simply propose edits on the documentation site.
+
 The developer discussion of Nightscout happens on our Discord channel at https://discord.gg/zg7CvCQ
 
 ### Previewing Changes
-To preview your work as you edit you must set up two python packages that are used to create this site using [MkDocs](http://www.mkdocs.org/). They are `mkdocs`, and `mkdocs-bootswatch`.
 
-Review [Properly Installing Python](http://docs.python-guide.org/en/latest/starting/installation/) for help getting Python installed. MkDocs works with Python 2.7, 3.3+, and pypy.
+Sphinx requires [Python 3.8+](https://www.sphinx-doc.org/en/master/usage/installation.html).
 
 * Install python modules
 
 ```bash
-$ cd <nightscout docs location>
+$ cd <nightscout docs location - i.e. where you cloned it>
 $ pip install -r requirements.txt
 ```
 
-* Install the [Material](https://squidfunk.github.io/mkdocs-material/) theme
+* Compile the documentation
 
 ```bash
-$ pip install mkdocs-material
+$ cd <nightscout docs location>/docs
+$ ./make.bat dirhtml
 ```
 
-* Run mkdocs server locally
+* Start a local http server to view the documentation
 
 ```bash
-$ cd <nightscout docs location>
-$ mkdocs serve
+$ cd <nightscout docs location>/_build/dirhtml
+$ python -m http.server
 ```
 
-* Preview docs in browser. Most changes will update automatically as you edit. Configuration and navigation changes will require restarting the MkDocs server.
-* Do you see error "*'mkdocs' is not recognized as an internal or external command, operable program or batch file.*" on Windows? This is a known problem with Python on Windows. Basically you need to add the "Scripts" directory to your PATH environment variable. If you are uncomfortable editing environment variables, you can use `python -m mkdocs` as the command
+* You can now browse the documentation locally at  [http://localhost:8000/](http://localhost:8000/) 
 
-```bash
-$ cd <nightscout docs location>
-$ python -m mkdocs serve
-```
 
-* Optionally, you can share the preview with others by uploading them to your repository's `gh-pages` branch
 
-```bash
-$ mkdocs gh-deploy
-```
+* Optionally, you can share the preview with others by building them in your repository with GitHub pages. You need to enable GitHub pages in your repository fork. The workflow in `.github/workflows/documentation.yaml` will automatically create and deploy your pages. 
+
+<img src="docs/vendors/github/img/GHPages.png" width="400px" />
 
 ## Conventions
 
 * Use images for clarity whenever appropriate
 
 ### Admonitions
-[Admonitions](https://python-markdown.github.io/extensions/admonition/) are a markdown extension that enable formatted blocks for visually calling out information. The types are: note, info, warning, and danger. Here are some examples of how to write the markdown:
-
-```markdown
-!!! note
-    This admonition uses the default title: 'Note'.
-
-!!! info "My Custom Title"
-    This admonition is blue and has a custom title.
-
-!!! warning ""
-    This admonition is yellow and has no title.
-```
+[Admonitions](https://myst-parser.readthedocs.io/en/latest/syntax/admonitions.html) are a markdown extension that enable formatted blocks for visually calling out information. 
