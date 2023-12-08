@@ -2,6 +2,42 @@
 
 </br>
 
+If you've got IT knowledge you can install the [`flyctl`](https://fly.io/docs/hands-on/install-flyctl/) utility on your computer.
+
+If it's too complex for you the web terminal is an easy alternative.
+
+## Use a web terminal
+
+```{warning}
+The web terminal feature was removed from Fly.io.
+Documentation will be updated to use a computer and flyctl.
+```
+
+a) In a new browser tab, [sign-in](https://fly.io/app/sign-in) with your fly.io account,then open a web [terminal](https://fly.io/terminal).
+If you just closed the terminal, you might need to wait some time (20 minutes) before you can open a new session (the message below appears).
+
+<img src="/vendors/fly.io/img/FlyIO07.png" width="600px" />
+
+</br>
+
+b) Click on the image with code (`Launch Web CLI`).
+
+<img src="/vendors/fly.io/img/FlyIO06.png" width="500px" />
+
+</br>
+
+c) Wait until the web terminal is ready.
+
+<img src="/vendors/fly.io/img/FlyIO08.png" width="600px" />
+
+</br>
+
+d) A command prompt will open.
+
+<img src="/vendors/fly.io/img/FlyIO09.png" width="600px" />
+
+</br>
+
 ## Cleanup
 
 After several failed attempts to deploy or migrate, you might need to delete some apps.
@@ -43,152 +79,149 @@ If you delete the builder (like in the picture above) you won't be able to deplo
 
 ### Delete your local repository
 
-You can delete the `cgm-remote-monitor` folder on your computer and fork it again.  
-Just make sure you backup the `fly.toml` file if you had a functional Nightscout site!!!
+#### If you deployed with your own computer (old method).
+
+You can delete the `cgm-remote-monitor` folder on your computer and fork it again. 
 
 If you run PowerShell in Windows, exit the folder before deleting it, in task manager end the `flyctl.exe` task. 
+
+#### If you deployed from the web terminal.
+
+You don't have a local repository.
 
 </br>
 
 ## Make your migrated app maintainable
 
-Follow these instructions  to make your site maintainable and upgradable.
+If you migrated Nightscout from Heroku using Fly.io migration utility you need to fix your deployment to update it.
 
-### Step 1: Create a GitHub account and fork the Nightscout project
+Open a [web terminal](#use-a-web-terminal).
 
-```{tab-set}
+a) Type (or copy and paste) the following command in the terminal:</br>
 
-:::{tab-item} I don't have a GitHub Account
-### Create a GitHub account
-::: {include} /vendors/github/create.md
-### Fork the Nightscout project
-:::{include} /vendors/github/fork.md
-:::
-
-:::{tab-item} I already have a GitHub Account
-### Update your Nightscout fork
-:::{include} /vendors/github/update_b.md
-:::
-
-```
-
-</br>
-
-### Step 2: Download fly.io Command Line Interface (CLI)
-
-Fly.io is mainly managed through a command line interface (CLI). The first step will be installing the CLI [as documented here](https://fly.io/docs/flyctl/installing/). You need a computer for this.
-
-`flyctl is a command line interface to the Fly.io platform.`
-
-`It allows users to manage authentication, application launch,
-deployment, network configuration, logging and more with just the
-one command.`
-
-</br>
-
-### Step 3: Locally fork and deploy cgm-remote-monitor
-
-a) Clone the `cgm-remote-monitor` repository locally:
-
-If necessary install [Git](https://git-scm.com/downloads) on your computer (pick your own OS in Downloads).
-
-Open a PowerShell (Windows) or a terminal (OSX/Linux), and type (replace `yourGitHubNameHere` by your own GitHub account name):
-
-`git clone https://github.com/yourGitHubNameHere/cgm-remote-monitor`
+`curl https://nightscout.github.io/_static/flyboot.sh | bash`</br>
 
 <img src="/vendors/fly.io/img/FlyIO01.png" width="600px" />
 
 </br>
 
-b) Navigate to the directory where you code has been cloned locally
+b) Navigate to the Nightscout code directory copied locally by typing:
 
 `cd cgm-remote-monitor`
 
-</br>
-
-c) Recover the `fly.toml` deployment file from your migrated app. In the command line below replace `yourAppName` by the app name (usually your Nightscout site name: **`yourAppName`**`.fly.dev`).
-
-`flyctl config save -a yourAppName`
+<img src="/vendors/fly.io/img/FlyIO02.png" width="600px" />
 
 </br>
 
-d) Change the internal port number.
+c) Deploy your site with Fly.io.  
+Type the following command:
 
-Edit the `fly.toml` file and replace `internal_port = 8080` by `internal_port = 1337`.  
-Save the file.
+`flyctl launch`
 
-</br>
-
-e) Recreate the environment variables.
-
-### If you migrated from and still have access to Heroku
-
-Backup your Heroku environment variables as explained [here](/troubleshoot/heroku.md#method-2-export).
-
-Edit the `fly.toml` file and paste all variables after `[env]`. Save the file.
-
-*Note: if you don't see `MONGODB_URI` but see `MONGO_CONNECTION` (NOT `MONGO_COLLECTION`) use its value.*
-
-**If you lost access to Heroku or you don't want to transform them in environment variables**
-
-You can leave the variables as secrets and use [this method](/vendors/fly.io/new_user.md#secrets) when you need to modify them.
-
-### If you lost access to Heroku but you want the variables to be easily maintainable
-
-Download the default [`fly.toml`](/_static/fly.toml) and correct all the variables values.
-
-Make sure the app name `app =`  is matching your site name.
+<img src="/vendors/fly.io/img/FlyIO13.png" width="600px" />
 
 </br>
 
-f) Deploy the changes.
+To the question `Would you like to copy its configuration to the new app?` answer `Y` (yes). 
 
-Type the command:
+To the question: `App Name (leave blank to use an auto-generated name):` answer with **the name of your current Nightscout app**.
+
+<img src="/vendors/fly.io/img/FlyIO14.png" width="600px" />
+
+</br>
+
+The app should already exist, confirm you want to launch into it.
+
+<img src="/vendors/fly.io/img/FlyIO16.png" width="600px" />
+
+</br>
+
+d) In the terminal type:
 
 `flyctl deploy`
 
-Deploy will take some time and should complete with the message `1 desired, 1 placed, 1 healthy, 0 unhealthy [health checks: 1 total, 1 passing]`.
+You app will deploy. It will take time (about 10 minutes).
 
-If you decided to keep the variables secret you have completed recovery.
-
-</br>
-
-g) Verify your environment variables:
-
-Type the command:
-
-`flyctl config env`
-
-You will see two lists of variables.  
-The first one will be your secrets.
-
-<img src="/vendors/fly.io/img/FlyT05.png" width="400px" />
-
-Followed by the environment variables.
-
-<img src="/vendors/fly.io/img/FlyT06.png" width="600px" />
-
-Make sure the environment variables match.
+<img src="/vendors/fly.io/img/FlyIO17.png" width="600px" />
 
 </br>
 
-h) Delete all secrets.
-
-You will need to delete the secrets.
-
-Copy paste this command line for the most usual ones. Wait until redeploy completes.
-
-`flyctl secrets unset ALARM_HIGH ALARM_LOW ALARM_TIMEAGO_URGENT ALARM_TIMEAGO_URGENT_MINS ALARM_TIMEAGO_WARN ALARM_TIMEAGO_WARN_MINS ALARM_TYPES ALARM_URGENT_HIGH ALARM_URGENT_LOW API_SECRET BG_HIGH BG_LOW  BG_TARGET_BOTTOM BG_TARGET_TOP BRIDGE_PASSWORD BRIDGE_SERVER BRIDGE_USER_NAME CUSTOM_TITLE DISPLAY_UNITS ENABLE MMCONNECT_PASSWORD MMCONNECT_SERVER MMCONNECT_USER_NAME MONGODB_URI NIGHT_MODE PAPERTRAIL_API_TOKEN SHOW_PLUGINS SHOW_RAWBG THEME TIME_FORMAT AUTH_DEFAULT_ROLES BASAL_RENDER BOLUS_RENDER_FORMAT_SMALL BOLUS_RENDER_OVER DEVICESTATUS_ADVANCED IAGE_INFO IAGE_URGENT IAGE_WARN OPENAPS_COLOR_PREDICTION_LINES OPENAPS_FIELDS PUMP_FIELDS PUMP_URGENT_BATT PUMP_WARN_BATT SAGE_INFO SAGE_URGENT SAGE_WARN SCALE_Y SHOW_FORECAST`
-
-Continue to use `flyctl secrets unset` until all secrets have been removed.
-
-Verify your site is still functional.
+Do not interrupt the process.
 
 </br>
 
-```{danger}
-Do NOT update your online fork of `cgm-remote-monitor` from your local version!
-Your `fly.toml` contains confidential information that might be visible to anybody if you do so.
+When deploy completes you should see your full Nightscout site name.
+
+<img src="/vendors/fly.io/img/FlyIO18.png" width="600px" />
+
+</br>
+
+e) Last but not least: make sure to downscale your app with the following command:
+
+`flyctl scale count 1`
+
+<img src="/vendors/fly.io/img/FlyIO19.png" width="600px" />
+
+Enter `y` to confirm.
+
+<img src="/vendors/fly.io/img/FlyIO20.png" width="600px" />
+
+</br>
+
+f) Exit the terminal typing `exit` or pressing `Ctrl D` (`⌘ D` with a Mac).
+
+Keep in mind you'll need some time to reopen it if you need to (as explained in step 2 above).  
+Close the browser tab.
+
+</br>
+
+## Downscale your app
+
+March 31st 2023, apps deploy in V2 and V1 apps are automatically migrated too.  
+This causes some issues as V2 automatically deploys in a more than one machine, your Nightscout site might not work correctly.
+
+Type the following command in a [web terminal](#use-a-web-terminal) (replace ***`app_name`*** with your own app name):
+
+`flyctl scale --app `***`app_name`***` count 1`
+
+<img src="/vendors/fly.io/img/FlyT08.png" width="600px" />
+
+Your app should now only be running on one machine. Check [here](https://fly.io/dashboard/personal/machines).
+
+***Note:*** *the builder app is normal, it is stopped: don't worry about it.*
+
+<img src="/vendors/fly.io/img/FlyT09.png" width="600px" />
+
+</br>
+
+## Obtain a free shared IP
+
+Apps migrated from Heroku will use a dedicated IP billed $1.90/month.
+
+If you want to run your Nightscout site in Fly.io for free, you will need to release the IP and request a shared IP.
+
+Follow the instructions below. The IP 137.66.11.78 and the site name `example-ns` are examples, yours will be different. Use your own IP and site name.
+
+```
+$ flyctl auth login  # This will open a browser and ask me to authenticate 
+
+$ flyctl app list
+NAME    OWNER           STATUS          PLATFORM        LATEST DEPLOY
+example-ns   personal        deployed        machines        2023-05-26T07:24:51Z
+
+
+$ flyctl ips list -a example-ns
+VERSION IP                      TYPE    REGION  CREATED AT
+v4      137.66.11.78            public  global  2022-09-13T14:17:58Z
+v6      3b09:8280:1::3:723c     public  global  2022-09-13T14:18:00Z
+
+$ flyctl ips release 137.66.11.78 -a example-ns
+Released 137.66.11.78 from example-ns
+
+$ flyctl ips allocate-v4 --shared -a example-ns
+v4      <new-ip-assigned> shared  global
 ```
 
-Congratulations. You can now easily [modify your Nightscout Fly.io variables](/vendors/fly.io/new_user.md#env-variables) and [update](/update/update) your site.
+You do not need to remember your new IP, just continue using your site name as before: https://yoursitename.fly.dev
+
+</br>

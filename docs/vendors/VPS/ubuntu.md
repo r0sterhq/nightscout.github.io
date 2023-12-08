@@ -2,12 +2,14 @@
 
 </br>
 
-The most complete guide for building your site step by step is the one used for [Oracle Cloud](https://www.dropbox.com/s/5twlqrndofqno0t/0-amber-oracle.pdf).  
-Just skip Oracle specific instructions and follow the flow.
-
-Deploying in Ubuntu is very popular for skilled people, see also [here](https://gist.github.com/DrCR77/eb08b830d4f31092cf65a8a9976dc0a6) and [here](https://www.michael-schloemp.de/2021/10/25/nightscout-installation-auf-ubuntu-20-04-1blu-vps/).</br>
+```{tip}
+<span style="font-size:larger;">The most complete guide for building your site step by step is the one used for [Oracle Cloud](https://www.dropbox.com/s/5twlqrndofqno0t/0-amber-oracle.pdf).  
+If you use another hosting provider, skip Oracle specific instructions and follow the flow.</span>
+```
 
 </br>
+
+Deploying in Ubuntu is very popular for skilled people, see also [here](https://gist.github.com/DrCR77/eb08b830d4f31092cf65a8a9976dc0a6) and [here](https://www.michael-schloemp.de/2021/10/25/nightscout-installation-auf-ubuntu-20-04-1blu-vps/).</br>
 
 If you don't own a domain, get one now, see [here](/nightscout/dns).
 
@@ -41,60 +43,9 @@ sudo apt install nano -y
 
 ## Step 1 - Install MongoDB
 
-If you use Ubuntu 22.04 skip this and continue to a2).
+a) Follow the vendor instructions
 
-a1) Install MongoDB with Ubuntu 20.04
-
-```bash
-sudo apt install mongodb -y
-```
-
-Wait until it completes, continue to b).
-
-a2) Install MongoDB with Ubuntu 22.04
-
-You first need to install ssl 1.1.
-
-Mind your architecture, check first:
-
-```
-dpkg --print-architecture
-```
-
-For arm64:
-
-```bash
-sudo -i
-wget http://launchpadlibrarian.net/475575244/libssl1.1_1.1.1f-1ubuntu2_arm64.deb
-apt install -y ./libssl1.1_1.1.1f-1ubuntu2_arm64.deb
-```
-
-For amd64:
-
-```
-sudo -i
-wget http://launchpadlibrarian.net/475575244/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
-apt install -y ./libssl1.1_1.1.1f-1ubuntu2_amd64.deb
-```
-
-You can now install Mongo dependencies.
-
-```
-apt-get update
-apt-get install gnupg
-wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org
-/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-```
-
-And Mongo server.
-
-```
-apt-get update
-apt-get install -y mongodb-org
-systemctl start mongod
-systemctl status mongodsystemctl enable mongod
-```
+[MongoDB 5 with Ubuntu 20.04](https://www.mongodb.com/docs/v5.0/tutorial/install-mongodb-on-ubuntu/) or [MongoDB 6 with Ubuntu 22.04](https://www.mongodb.com/docs/v6.0/tutorial/install-mongodb-on-ubuntu/)
 
 b) Enter in Mongo shell
 
@@ -240,14 +191,7 @@ d) Install `nodejs` and `npm`.
 
 **Mind some small VPS will not be powerful enough to deploy with npm, consider using a [Docker container](/vendors/VPS/docker) in this case.**
 
-*Note: you can also try simply to install the latest versions with with `sudo apt-get install -y nodejs npm` if your VPS is powerful enough. Small VPS will fail to run Nightscout with recent node.js versions.*
-
-```
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
-```
-
-**Keep in mind updating your VPS will update node hence prevent future deploys. If you want to keep node to a fixed version you should use the following commands (node 14 as an example):**
+The example below is with the **latest supported npm version**: 16.20.1
 
 ```
 sudo apt install nodejs
@@ -255,10 +199,8 @@ sudo apt install build-essential checkinstall
 sudo apt install libssl-dev
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 source /etc/profile
-nvm ls-remote
-nvm install 14.18.1
-nvm list
-nvm use 14.18.1
+nvm install 16.20.1
+nvm use 16.20.1
 ```
 
 Once complete, install npm
@@ -278,10 +220,12 @@ ln -s cgm-remote-monitor nightscout
 cd nightscout
 ```
 
-!!!warning "Make sure you're in your `nightscout` directory"  
-    Should you exit your terminal and resume working later make sure to return to this state.  
+```{admonition} Make sure you're in your nightscout directory
+:class: warning
+Should you exit your terminal and resume working later make sure to return to this state.  
     1- you're using your nightscout user  
     2- you are in your nightscout directory
+```
 
 f) Install Nightscout.
 
@@ -307,10 +251,12 @@ You can use the [**helper page**](/_static/NightscoutVariablesUbuntu.html) in a 
 
 File all necessary fields, click on the Validate button at the bottom of the form, if no error is seen you will have all variables displayed in the text box at the bottom, click on the Copy All button.
 
-!!!note "Variables format"  
-    1- do not add`export` before the variable name  
-    2- safe format is `VARIABLE="value"`  
-    3- all spaces in the values must be replaced by `%20`
+```{admonition} Variables format
+:class: tip
+1- do not add`export` before the variable name  
+2- safe format is `VARIABLE="value"`  
+3- all spaces in the values must be replaced by `%20`
+```
 
 b) Return to the text editor. Paste the result in `nano`.
 

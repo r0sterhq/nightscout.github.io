@@ -9,9 +9,8 @@ Consider a hosted Nightscout service! Check for easier solutions [here](/index.m
 
 </br>
 
-```{danger}
-The free plan will be removed Jul 3rd for new users and Aug 1st for existing users.</br>
-Documentation will be updated to reflect the changes when visible.
+```{warning}
+The free plan has been removed Jul 3rd for new users and Aug 1st for existing users.
 ```
 
 </br>
@@ -23,9 +22,10 @@ Documentation will be updated to reflect the changes when visible.
 You can easily create a new Railway Nightscout site with a [MongoDB Atlas](/vendors/mongodb/atlas) database or a [Railway MongoDB database](/vendors/railway/database).
 
 **Pros**:  
-* Nightscout fits in the 5$/month Hobby account  
-* Easy to deploy or migrate an existing site from Heroku  
-* Simple to use and troubleshoot  
+* Nightscout fits in the 5$/month Hobby account
+* Easy to deploy or migrate an existing site from Heroku
+* Simple to use and troubleshoot
+* You can host several Nightscout sites within a single Hobby account
 * Can use a native Railway MongoDB database ($)  
 
 **Cons**:
@@ -128,7 +128,7 @@ e) Scroll down and click `I will not deploy any of that`.
 
 ```{danger}
 The free plan will be removed Jul 3rd for new users and Aug 1st for existing users.</br>
-Documentation will be updated to reflect the changes when visible.
+Documentation will be updated.
 ```
 
 </br>

@@ -6,6 +6,10 @@ Nightscout configuration is held in variables , their content can be modified to
 
 ````{tab-set}
 
+:::{tab-item} Select your platform ->
+</br>
+:::
+
 :::{tab-item} Heroku
 [**→ Here**](/vendors/heroku/new_user.md#editing-config-vars-in-heroku)
 :::
@@ -22,12 +26,20 @@ Nightscout configuration is held in variables , their content can be modified to
 [**→ Here**](/vendors/azure/new_user.md#editing-config-vars-in-azure)
 :::
 
+:::{tab-item} Render
+[**→ Here**](/vendors/render/new_user.md#editing-variables-in-render)
+:::
+
 :::{tab-item} Fly.io
 [**→ Here**](/vendors/fly.io/new_user.md#editing-config-vars-in-fly-io)
 :::
 
 :::{tab-item} Google Cloud
 [**→ Here**](https://navid200.github.io/xDrip/docs/Nightscout/NS_Variables.html)
+:::
+
+:::{tab-item} Hosted Nightscout
+If you use a hosted service, open the vendor web interface to access your Nightcsout site variables configuration or contact support.
 :::
 
 ````
@@ -47,6 +59,7 @@ Nightscout configuration is held in variables , their content can be modified to
 The connection string required to access your database (where all your data is stored in the cloud).
 
 ```{warning}
+**`MONGODB_URI` is handled automatically if you use a hosted service or Google Cloud xDrip+ method.** In these cases you don't need to worry about it and can't or shouldn't change it.</br>
 This string is vital to your Nightscout functioning. A wrong connection string will prevent your site from opening and your data uploading in Nightscout.
 ```
 
@@ -79,7 +92,8 @@ MyV3ry53cr37
 ```
 
 ```{hint}
-This is the passcode that will be required by the uploader app (if any) to send data to your site, and that will allow you to modify your site parameters from the web interface. Keep it secret, only share it with trusted people, change it if you believe it's been exposed publicly. Minimum length is 12 characters, don't make it too long and **do not put special characters in it** (better stick to letters and numbers). It is case-sensitive.
+Don't make it too long and **do not put special characters in it** (better stick to letters and numbers).</br>It is case-sensitive.</br>
+If you need to share Nightscout access but control the access, use an `admin` [token](/nightscout/security.md#create-authentication-tokens-for-users).
 ```
 
 </br>

@@ -30,7 +30,7 @@ A new deployment method has been created using a Docker container.
 
 </br>
 
-This is a transcript of the original video you'll find [here](https://www.youtube.com/watch?v=EDADrteGBnY), excluding the Cosmos database **that isn't fully compatible with Nightscout** and **can't be deployed in some geographical areas**.
+This is a transcript of the original video which cannot be used as-is anymore because the **Cosmos (MongDB) database which was used at the time of the video isn't fully compatible with Nightscout and can't be deployed in some geographical areas**. For reference the obsolete video is [here](https://www.youtube.com/watch?v=EDADrteGBnY).
 
 </br>
 
@@ -113,6 +113,7 @@ f) Change the plan size.
 <img src="/vendors/azure/img/Azure26.png" width="600px" />
 
 ```{admonition} Limited CPU usage
+:class: warning
 The Free F1 plan includes 60 CPU minutes per day. It usually is enough for a moderate Nightscout usage but can also be insufficient and provoke interruptions in your Nightscout site. Not recommended for FreeAPS X and OpenAPS users.
 If you want a more reliable CPU, consider another plan like Shared D1 ($).
 ```

@@ -22,7 +22,7 @@ You can create your new Northflank Nightscout site with a [MongoDB Atlas](/vendo
 * Can use a native Northflank MongoDB database ($)  
 
 **Cons**:  
-* The Nightscout address generated for your site is impossible to remember, you can fix this with a [DNS service](/nightscout/dns) 
+* The Nightscout address generated for your site is impossible to remember
 ```
 
 </br>
@@ -149,6 +149,14 @@ To open your Nightscout site, navigate to your project `Services` and click the 
 
 </br>
 
+**Good time to check you selected the right plan.**
+
+Make sure you selected the developer sandbox plan to avoid unexpected fees.
+
+<img src="/vendors/northflank/img/NorthflankSP.png" width="400px" />
+
+</br>
+
 ```{include} /nightscout/first_setup.md
 
 ```
@@ -159,7 +167,12 @@ To open your Nightscout site, navigate to your project `Services` and click the 
 
 ## Change your Northflank Nightscout site name
 
-You [cannot](https://northflank.com/docs/v1/application/network/configure-ports#public-ports) override the default name if you don't have a DNS. You can use a free [dynamic DNS](/nightscout/dns) service to do this in order to have something easier to remember.
+You [cannot](https://northflank.com/docs/v1/application/network/configure-ports#public-ports) override the default name if you don't have a DNS.  
+You can use [TinyURL](https://tinyurl.com/) to get a shorter name.
+
+<img src="/vendors/northflank/img/TinyURL.png" width="300px" />
+
+You can also use a free [dynamic DNS](/nightscout/dns) service to do this in order to have something easier to remember.
 
 Keep the original Northflank URL in your [uploaders](/uploader/setup/) and [followers](/nightscout/downloaders/).
 
@@ -200,6 +213,15 @@ e) You can perform various operations on your variables:
 1. Add a new variable with `+ Add Variable`
 2. Edit variables values directly in the table
 3. Delete a variable with the bin icon
+
+~~~{note}
+Multiple lines values should be typed with `\n` separating each original line.</br>
+Example:</br>
+<img src="/nightscout/img/APNKeys.png" width="600px" /></br>
+```
+----BEGIN PRIVATE KEY-----\nMIGTAgEAMBMGBygGSM49AwEHBHkwdwIBAQQg7c8w00t5ju7N980r\nerN8N+isnJoec+ohIEuD0teRbPmgCgYIKoZIzj0DAQehRANCAAREnRISLSiFgdn4\nLbf44yIKspXKr7GpPBVshv3ShOms2qHTdAFriXXRPmbq7eAJuFrxpYOduU1dl9vo\nouciW0je\n-----END PRIVATE KEY-----
+```
+~~~
 
 Don't forget to `Update & restart` when you're done editing.
 

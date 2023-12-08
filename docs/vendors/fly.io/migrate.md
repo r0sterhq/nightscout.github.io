@@ -6,14 +6,6 @@ orphan: true
 
 </br>
 
-```{admonition} Migration is not recommended!
-:class: warning
-If you want to migrate your site in Fly.io make sure you will be able to **maintain it**.</br>
-It might be better to [deploy a new Fly.io Nightscout](/vendors/fly.io/new_user) site and copy your Heroku variables.
-```
-
-</br>
-
 ```{admonition} Too complicated? Not what you're looking for?
 :class: seealso
 Consider a hosted Nightscout service! Check for easier solutions [here](/index.md#nightscout-as-a-service).
@@ -25,14 +17,14 @@ Consider a hosted Nightscout service! Check for easier solutions [here](/index.m
 ## Fly.io
 ![Fly.io](/vendors/img/Fly.io.png)
 ^^^
-Fly.io proposes a simple migration wizard from Heroku] and you can create your new Nightscout site in Fly.io. Using a computer is mandatory with Fly.io as managing your site will require the use of a command line utility. **Not recommended for beginners.**
+Fly.io proposes a simple migration wizard from Heroku] and you can create your new Nightscout site in Fly.io. Managing your site will require the use of a command line utility.
 
 **Pros**:  
 * Nightscout fits in the free tier  
 * Easy to migrate an existing site from Heroku 
 
 **Cons**:  
-* **Maintaining your site requires the use of a computer with command line instructions, not very intuitive**  
+* **Maintaining your site requires the use command line instructions, not very intuitive**  
 * Migrated Heroku sites store variables as secrets  
 * Relying on the MongoDB Atlas database
 ```
@@ -128,6 +120,13 @@ n) If you open this URL you will see it's replicating real time your Heroku Nigh
 
 </br>
 
+```{warning}
+Migrated sites will use a dedicated IP, that is a billable feature ($1.90/month).
+You will need to release the address and get a shared one. See [here](/troubleshoot/fly.io.md#obtain-a-free-shared-ip) how to proceed.
+```
+
+</br>
+
 ## Step 2 - Remove the Heroku webhook to Fly.io
 
 a) By defaut Fly.io has made a link to Heroku so that whatever happens in Heroku (updates, variables changes, etc...) is mirrored to Fly.io.  
@@ -166,7 +165,7 @@ Your Fly.io Nightscout is now independent from Heroku.
 
 ```{admonition} Heroku Variables
 :class: warning
-You cannot see your variable values in Fly.io.</br>
+You cannot see your variables values in Fly.io.</br>
 You cannot edit them.</br>
 You MUST have a backup of your Heroku variables for maintenance purposes.</br>
 ```
@@ -179,15 +178,11 @@ Save this information in a safe place!
 
 </br>
 
-## Step 4 - Install Fly.io command line interface 
+## Step 4 - Downscale your webapp
 
-```{admonition} Fly.io flyctl
-:class: warning
-You MUST be able to use this program in order to maintain your Fly.io Nightscout app.
-```
+You app will most probably be deployed on several virtual resources and this will generate costs!
 
-Follow the example [here](/vendors/fly.io/new_user.md#editing-config-vars-in-flyio) and confirm you can get it to behave as expected.  
-Your Fly.io app name is the one you defined above in step 1.f.
+Follow [these guidelines](/troubleshoot/fly.io.md#downscale-your-app) to downscale it to one machine only.
 
 </br>
 

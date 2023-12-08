@@ -2,17 +2,19 @@
 
 </br>
 
-The most complete guide for building your site step by step is the one used for [Oracle Cloud](https://www.dropbox.com/s/5twlqrndofqno0t/0-amber-oracle.pdf).  
-Just skip Oracle specific instructions and follow the flow.
+```{tip}
+<span style="font-size:larger;">The most complete guide for building your site step by step is the one used for [Oracle Cloud](https://www.dropbox.com/s/5twlqrndofqno0t/0-amber-oracle.pdf).  
+If you use another hosting provider, skip Oracle specific instructions and follow the flow.</span>
+```
+
+</br>
 
 Original documentation from [Jason](https://github.com/nightscout/nightscout-docker).  
 More from [Andries](https://gist.github.com/Andries-Smit/daac75cd4c06af78cde68c5dec941705) and [Peter](https://github.com/peterleimbach/TestNightscoutDockerUbuntuServer22.04LTS) (traefik as below), [justmara](https://github.com/justmara/ns-setup) and [Ireneusz](https://github.com/ireneusz-ptak/ns-docker).
 
+If you want to deploy with CoreOS look [here](https://danielscrivano.com/blog/posts/nightscout/).
+
 A comprehensive description of the yaml file for mongo and Nightscout setup [here](https://github.com/LostOnTheLine/Nightscout_Docker-Compose).
-
-A dialog based script inspired from the xDrip+ team [here](https://github.com/psonnera/NSDockVPS).
-
-</br>
 
 If you don't own a domain name, get a DDNS name now: see [here](/nightscout/dns).
 
@@ -173,6 +175,20 @@ sudo docker compose down
 ```
 
 Note that you need to start it if you modify your `docker-compose.yml` configuration (to validate the changes).
+
+</br>
+
+## Update or downgrade
+
+Edit your `docker-compose.yml` configuration and change the image to whichever you want in the [community maintained images](https://hub.docker.com/r/nightscout/cgm-remote-monitor/tags).
+
+If you're using `image: nightscout/cgm-remote-monitor:latest` and you want to upgrade it to latest release, don't change anything. You can update to `cgm-remote-monitor:latest_dev` or choose an older version like `cgm-remote-monitor:14.2.6`
+
+```
+sudo docker compose down
+sudo docker compose pull
+nohup sudo docker compose up -d &
+```
 
 </br>
 

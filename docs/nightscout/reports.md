@@ -6,6 +6,10 @@ Nightscout offers some fantastic data-crunching report tools in the drawer menu,
 
 </br>
 
+An interesting video on how to use them [with Gary Scheiner](https://www.youtube.com/watch?v=hfzuFumN03o).
+
+</br>
+
 Select `Reports` to open the reports page.
 
 <img src="/nightscout/img/Reports00.png" width="600px" />
@@ -116,7 +120,7 @@ Mean Hourly Change is a sum of the absolute value of all glucose excursions for 
 
 Out of Range RMS is calculated by squaring the distance out of range for all glucose readings for the examined period, summing them, dividing by the count and taking the square root. This metric is similar to in-range percentage but weights readings far out of range higher. Lower values are better.
 
-GVI (Glycemic Variability Index) and PGS (Patient Glycemic Status) are measures developed by Dexcom, detailed [can be found here](https://web.archive.org/web/20160523152519/http://www.healthline.com/diabetesmine/a-new-view-of-glycemic-variability-how-long-is-your-line).
+GVI (Glycemic Variability Index) and PGS (Patient Glycemic Status) are measures developed by Dexcom, details [can be found here](https://web.archive.org/web/20160523152519/http://www.healthline.com/diabetesmine/a-new-view-of-glycemic-variability-how-long-is-your-line).
 
 </br>
 
@@ -130,7 +134,7 @@ This report will give you an hourly distribution view with a box plot and additi
 
 ## Percentile Chart
 
-This report will give you an percentile distribution view of the range you selected.
+This report will give you a percentile distribution view of the range you selected.
 
 <img src="/nightscout/img/Reports16.png" width="800px" />
 
@@ -138,7 +142,7 @@ This report will give you an percentile distribution view of the range you selec
 
 ## Weekly Distribution
 
-This report will give you an weekly view of your statistics.
+This report will give you a weekly view of your statistics.
 
 <img src="/nightscout/img/Reports14.png" width="1000px" />
 
@@ -146,7 +150,7 @@ This report will give you an weekly view of your statistics.
 
 ## Calibrations
 
-This will give you a a table of your calibrations, if your uploader sends the correct event and data.
+This will give you a table of your calibrations, if your uploader sends the correct event and data.
 
 <img src="/nightscout/img/Reports22.png" width="800px" />
 
@@ -154,7 +158,7 @@ This will give you a a table of your calibrations, if your uploader sends the co
 
 ## Treatments
 
-This will give you a a table of your treatments, day by day.
+This will give you a table of your treatments, day by day.
 
 <img src="/nightscout/img/Reports15.png" width="800px" />
 
@@ -192,14 +196,15 @@ You can navigate day to day with `< Previous day` and `Next day >` or by period 
 
 You might also be interested by [AutoTune](https://autotuneweb.azurewebsites.net/).
 
-!!!note  
-    Make sure to temporarily [disable authentication](/nightscout/security.md#how-to-turn-off-unauthorized-access) before running AutoTune.
+```{warning}
+Make sure to temporarily [disable authentication](/nightscout/security.md#how-to-turn-off-unauthorized-access) before running AutoTune.
+```
 
 </br>
 
 ## Nightscout Reporter
 
-[https://nightscout-reporter.zreptil.de/](https://nightscout-reporter.zreptil.de/) can be used to generate PDF documents with the data stored at Nightscout.
+[https://nightrep.zreptil.de/](https://nightrep.zreptil.de/) can be used to generate PDF documents with the data stored at Nightscout.
 
 You need to add [`cors`](/nightscout/setup_variables.md#cors-cors) to your [`ENABLE`](/nightscout/setup_variables.md#enable) variables
 

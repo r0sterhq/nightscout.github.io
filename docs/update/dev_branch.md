@@ -4,6 +4,8 @@ If you need to return to the previous Nightscout version, or in rare occasions, 
 
 Do not deploy `dev` or a branch other than `master` unless directed to do so (except if you know why you are doing so).
 
+AAPS users: mind the [compatibility matrix](../nightscout/close_loop.md#aaps)!
+
 ## Step 1: Update your repository in GitHub
 
 - Skip this step if you're using Azure.
@@ -40,14 +42,19 @@ Do not deploy `dev` or a branch other than `master` unless directed to do so (ex
 
 <img src="/vendors/github/img/Dev04.png" width="500px" >
 
-- If you ran into trouble, try to [Redeploy](/update/redeploy.md).
+- If you ran into trouble, try to [Redeploy](/update/redeploy.md) (and this is **mandatory** if you don't see `dev` in GitHub.)
 
 </br>
 
 ## Step 2: Deploy
 
+Select your platform below:
+
 ```{tab-set}
 
+:::{tab-item} Select your platform ->
+</br>
+:::
 
 :::{tab-item} Heroku
 - Log in Heroku [https://id.heroku.com/login](https://id.heroku.com/login)</br></br>
@@ -111,7 +118,7 @@ Do not deploy `dev` or a branch other than `master` unless directed to do so (ex
 <img src="/vendors/azure/img/Azure43.png" width="400px" /></br></br>
 - In the left menu select Deployment Center, in Full Image Name and Tag change the version to:</br></br>
 `nightscout/cgm-remote-monitor:latest_dev`	(example for dev)</br></br>
-Or whichever version (change `filter tag` find the version) in the [list]</br></br>(https://hub.docker.com/r/nightscout/cgm-remote-monitor/tags).</br></br>
+Or whichever version (change `filter tag` find the version) in the [list](https://hub.docker.com/r/nightscout/cgm-remote-monitor/tags).</br></br>
 `nightscout/cgm-remote-monitor:14.2.6`	(example for 14.2.6)</br></br>
 <img src="/vendors/azure/img/Dev12.png" width="600px" /></br></br>
 - Click Save (or Discard if you don't want to save).</br>
@@ -119,17 +126,23 @@ Or whichever version (change `filter tag` find the version) in the [list]</br></
 <img src="/vendors/azure/img/Dev13.png" width="400px" /></br></br>
 :::
 
+:::{tab-item} Google Cloud
+[Here](https://navid200.github.io/xDrip/docs/Nightscout/Customize.html)</br>
+:::
+
 :::{tab-item} Fly.io
-Make sure you have a local fork of `cgm-remote-monitor` and the current fly.toml before continuing.</br>
-If you don't, first perform [these operations](/troubleshoot/fly.io.md#make-your-migrated-app-maintainable).</br></br>
-a) Open a PowerShell (Windows) or a terminal (OSX/Linux), and type:</br></br>
+a) Open a [Web Terminal](/vendors/fly.io/new_user.md#step-2-open-the-web-terminal), and type:</br></br>
+`git clone https://github.com/nightscout/cgm-remote-monitor`</br></br>
 `cd cgm-remote-monitor`</br></br>
 b) Update your local fork</br></br>
+`git config pull.rebase true`</br></br>
 `git pull origin dev`</br></br>
-c) Deploy the changes.</br></br>
-`flyctl deploy`</br></br>
-Deploy will take some time and should complete with the message</br>
-`1 desired, 1 placed, 1 healthy, 0 unhealthy [health checks: 1 total, 1 passing]`.</br>
+c) Deploy the changes (replace *yourappname* by the actual name of your fly.io Nightscout app).</br></br>
+`flyctl deploy -a yourappname`</br></br>
+Deploy will take some time and should complete with the message</br></br>
+`Visit your newly deployed app at https://yourappname.fly.dev`</br></br>
+d) Don't forget to downscale the app!</br></br>
+`flyctl scale count 1`</br></br>
 :::
 
 

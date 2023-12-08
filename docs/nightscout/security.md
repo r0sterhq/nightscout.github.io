@@ -106,7 +106,7 @@ To Take Advantage of Roles, Turn Off Unauthorized Access to Your Site:
 
 If you want to ensure that ONLY someone with permission to view your site (e.g., a token) is able to view the data, you should configure the [`AUTH_DEFAULT_ROLES`](/nightscout/setup_variables.md#auth_default_roles) variable. Set the value as: `denied`.
 
-Edit (or add) your variable and set it to `denied`.
+Edit (or add) this variable and set it to `denied` (see [here](../setup_variables.md#nightscout-configuration) how to edit variables).
 
 <img src="/nightscout/img/Admin03.png" width="600px" />
 
@@ -126,4 +126,9 @@ In order to make your site visible to anybody, set  [`AUTH_DEFAULT_ROLES`](/nigh
 
 ## Developers: API authorization
 
-See [this page](https://github.com/nightscout/cgm-remote-monitor/wiki/API-v1-Security) for how to authenticate your app in the API calls.
+See [this page](https://github.com/nightscout/cgm-remote-monitor/wiki/API-v1-Security) for how to authenticate your app in the API V1 calls.
+
+The API documentation is visible on your Nightscout site using this extension to your site address:
+
+https://YOUR-SITE.com/api-docs/ and https://YOUR-SITE.com/api3-docs/.
+

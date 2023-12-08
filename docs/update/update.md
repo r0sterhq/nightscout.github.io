@@ -1,18 +1,32 @@
 # Update Nightscout
 
+```{tip}
+You don't need to follow these instructions if you use a hosted service.</br>Contact the vendor to learn more about possible updates.
+```
+
+</br>
+
 [See here which is the current released version](https://github.com/nightscout/cgm-remote-monitor/releases) before updating.
 
 </br>
 
 ## Step 1: Update your repository in GitHub
 
-Check **[here](/vendors/github/update)** if this is necessary.
+```{tip}
+Skip this step if you're using Azure, Google Cloud xDrip+ scripted deployment or Fly.io from the orignal `cgm-remote-monitor` repository.
+```
+
+Follow [these instructions](/vendors/github/update/) and come back.
 
 </br>
 
 ## Step 2: Deploy
 
 ```{tab-set}
+
+:::{tab-item} Select your platform ->
+</br>
+:::
 
 :::{tab-item} Heroku
 - Log in Heroku [https://id.heroku.com/login](https://id.heroku.com/login) </br>
@@ -60,28 +74,13 @@ If you ran into trouble, try the [Redeploy](/update/redeploy.md) method</br>
 
 :::{tab-item} Fly.io
 - ***Site maintainability***</br>
-Make sure you have a local fork of `cgm-remote-monitor` and the current `fly.toml` before continuing.
-If you don't, first perform [these operations](/troubleshoot/fly.io.md#make-your-migrated-app-maintainable).
+Perform [these operations](/troubleshoot/fly.io.md#make-your-migrated-app-maintainable).
 </br></br>
-a) Open a PowerShell (Windows) or a terminal (OSX/Linux), and type:</br>
-`cd cgm-remote-monitor`
-</br></br>
-b) Update your local fork</br>
-`git pull origin master`
-</br></br>
-c) Deploy the changes.</br>
-Type the command:</br>
-`flyctl deploy`</br></br>
-Deploy will take some time and should complete with the message</br>
-`1 desired, 1 placed, 1 healthy, 0 unhealthy [health checks: 1 total, 1 passing]`.
+Your deployment will update automatically.
 </br>
 :::
 
-:::{tab-item} Railway
-</br>Once GitHub updated, your Nightscout should automatically deploy with the latest version.</br></br>
-:::
-
-:::{tab-item} Northflank
+:::{tab-item} Railway Northflank Render
 </br>Once GitHub updated, your Nightscout should automatically deploy with the latest version.</br></br>
 :::
 

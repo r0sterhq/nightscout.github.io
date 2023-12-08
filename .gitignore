@@ -10,3 +10,5 @@ docs/build
 site/
 gh-pages
 _build/
+build/
+.vscode/

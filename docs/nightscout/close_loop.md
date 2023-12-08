@@ -8,6 +8,8 @@ Look into the specific app documentation to know more about optimal Nightscout s
 
 The heading for each section is a link to the Nightscout overview page for that closed-loop system.
 
+You will also find general support in [Loop and Learn](https://www.loopnlearn.org/).
+
 </br>
 
 ## [Loop](https://loopkit.github.io/loopdocs/nightscout/overview/)
@@ -29,6 +31,10 @@ Facebook group: [Looped](https://www.facebook.com/groups/TheLoopedGroup)
 </br>
 
 ## [AAPS](https://androidaps.readthedocs.io/en/latest/EN/Installing-AndroidAPS/Nightscout.html)
+
+```{warning}
+AAPS 3.2 requires Nightscout 15.
+```
 
 AndroidAPS is an open source app for people living with insulin-dependent diabetes that acts as an artificial pancreas system (APS) on Google Android smartphones.
 
